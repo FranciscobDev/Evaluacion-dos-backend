@@ -1,0 +1,78 @@
+:root {
+    --primary-color: #e50914; /* Netflix Red */
+    --bg-color: #141414;
+    --card-bg: #2f2f2f;
+    --text-color: #ffffff;
+    --text-muted: #b3b3b3;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Efecto hover en las tarjetas de Bootstrap */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.hover-effect:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.7) !important;
+}
+
+/* Personalización de Navbar */
+.navbar {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(20,20,20,1) 100%) !important;
+    border-bottom: 1px solid #333;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* Personalización de los Nav Pills de Bootstrap */
+.nav-pills .nav-link {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: var(--primary-color) !important;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(229, 9, 20, 0.4);
+}
+
+/* Títulos y textos */
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+.border-danger {
+    border-color: var(--primary-color) !important;
+}
+
+.text-danger {
+    color: var(--primary-color) !important;
+}
+
+/* Estilos de pie de página */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    border-top: 1px solid #333;
+    color: var(--text-muted);
+}

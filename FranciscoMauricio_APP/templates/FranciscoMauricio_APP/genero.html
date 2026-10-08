@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ genero.nombre }} - Películas{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <!-- Encabezado del género -->
+    <div class="row mb-5 text-center">
+        <div class="col-12">
+            <h1 class="display-4 text-danger fw-bold">{{ genero.nombre }}</h1>
+            <p class="lead text-light opacity-75">{{ genero.descripcion }}</p>
+        </div>
+    </div>
+
+    <!-- Grid de Películas -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {% for pelicula in genero.peliculas %}
+        <div class="col">
+            <div class="card h-100 bg-secondary text-white border-0 shadow hover-effect">
+                <img src="{% static 'imagenes/'|add:pelicula.imagen %}" class="card-img-top" alt="{{ pelicula.nombre }}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title text-truncate" title="{{ pelicula.nombre }}">{{ pelicula.nombre }}</h5>
+                    <p class="card-text text-light opacity-75">
+                        <small>Año: {{ pelicula.año }}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-light">No hay películas disponibles en este género.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

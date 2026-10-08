@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Películas por Género{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Componente Bootstrap: Nav Pills Verticales para los géneros -->
+    <div class="col-md-3 mb-4">
+        <h3 class="mb-3 border-bottom pb-2 border-danger">Géneros</h3>
+        <div class="nav flex-column nav-pills me-3 gap-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            {% for genero in generos %}
+            <button class="nav-link text-start {% if forloop.first %}active{% endif %}" 
+                    id="v-pills-{{ genero.id }}-tab" 
+                    data-bs-toggle="pill" 
+                    data-bs-target="#v-pills-{{ genero.id }}" 
+                    type="button" role="tab" 
+                    aria-controls="v-pills-{{ genero.id }}" 
+                    aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                {{ genero.nombre }}
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Componente Bootstrap: Tab Content y Cards para las películas -->
+    <div class="col-md-9">
+        <div class="tab-content" id="v-pills-tabContent">
+            {% for genero in generos %}
+            <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" 
+                 id="v-pills-{{ genero.id }}" 
+                 role="tabpanel" 
+                 aria-labelledby="v-pills-{{ genero.id }}-tab" 
+                 tabindex="0">
+                 
+                <!-- Título y descripción del género -->
+                <div class="mb-4">
+                    <h2 class="text-danger fw-bold">{{ genero.nombre }}</h2>
+                    <p class="text-light opacity-75 fs-5">{{ genero.descripcion }}</p>
+                </div>
+
+                <!-- Grid de Cards de Bootstrap -->
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                    {% for pelicula in genero.peliculas %}
+                    <div class="col">
+                        <div class="card h-100 bg-secondary text-white border-0 shadow hover-effect">
+                            <img src="{% static 'imagenes/'|add:pelicula.imagen %}" class="card-img-top" alt="{{ pelicula.nombre }}" style="height: 250px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate" title="{{ pelicula.nombre }}">{{ pelicula.nombre }}</h5>
+                                <p class="card-text text-light opacity-75">
+                                    <small>Año: {{ pelicula.año }}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
