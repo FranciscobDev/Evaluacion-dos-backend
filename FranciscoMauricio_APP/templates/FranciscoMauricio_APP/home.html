@@ -1,54 +1,212 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Películas por Género{% endblock %}
+{% block title %}Inicio - Catálogo de Películas{% endblock %}
 
 {% block content %}
-<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <h1 class="fw-light">Nuestro Catálogo</h1>
-            <p class="lead text-body-secondary">
-                Explora nuestra selección de películas por géneros. Puedes seleccionar un género de la lista para ver las películas disponibles.
-            </p>
+<!-- Hero Section -->
+<section class="hero-section position-relative overflow-hidden py-5 py-lg-6">
+    <div class="hero-bg-overlay"></div>
+    <div class="container position-relative py-4 py-md-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill custom-badge mb-3">
+                    <i class="bi bi-collection-play-fill text-white"></i>
+                    <span class="text-white fw-bold small">Catálogo Digital de Películas</span>
+                </div>
+                <h1 class="display-4 fw-extrabold text-white mb-3 lh-sm">
+                    Explora Nuestro <span class="text-gradient-warm">Catálogo Completo</span>
+                </h1>
+                <p class="lead text-cream mb-0 opacity-90 fs-5">
+                    Descubre una cuidada recopilación de películas organizadas por género. Selecciona tu categoría favorita a continuación o navega desde la barra superior para ver todos los títulos disponibles.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-card-banner p-4 rounded-4 shadow-lg">
+                    <div class="d-flex align-items-center justify-content-between border-bottom border-secondary border-opacity-25 pb-3 mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-folder2-open text-gold fs-4"></i>
+                            <span class="fw-bold text-white fs-5">Géneros Disponibles</span>
+                        </div>
+                        <span class="badge custom-badge">40+ Títulos</span>
+                    </div>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        <a href="{% url 'FranciscoMauricio_APP:Accion' %}" class="category-quick-card text-decoration-none p-3 rounded-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="cat-icon-box bg-dark text-gold border border-secondary border-opacity-50">
+                                    <i class="bi bi-lightning-charge-fill fs-5"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white fw-bold mb-0">Acción</h6>
+                                    <small class="text-muted">Adrenalina y persecuciones</small>
+                                </div>
+                            </div>
+                            <span class="btn btn-sm btn-outline-beige rounded-circle"><i class="bi bi-arrow-right"></i></span>
+                        </a>
+
+                        <a href="{% url 'FranciscoMauricio_APP:CienciaFiccion' %}" class="category-quick-card text-decoration-none p-3 rounded-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="cat-icon-box bg-dark text-green border border-secondary border-opacity-50">
+                                    <i class="bi bi-rocket-takeoff-fill fs-5"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white fw-bold mb-0">Ciencia Ficción</h6>
+                                    <small class="text-muted">Espacio y tecnología futura</small>
+                                </div>
+                            </div>
+                            <span class="btn btn-sm btn-outline-beige rounded-circle"><i class="bi bi-arrow-right"></i></span>
+                        </a>
+
+                        <a href="{% url 'FranciscoMauricio_APP:Comedia' %}" class="category-quick-card text-decoration-none p-3 rounded-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="cat-icon-box bg-dark text-coffee border border-secondary border-opacity-50">
+                                    <i class="bi bi-emoji-laughing-fill fs-5"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white fw-bold mb-0">Comedia</h6>
+                                    <small class="text-muted">Risas y diversión garantizada</small>
+                                </div>
+                            </div>
+                            <span class="btn btn-sm btn-outline-beige rounded-circle"><i class="bi bi-arrow-right"></i></span>
+                        </a>
+
+                        <a href="{% url 'FranciscoMauricio_APP:Romance' %}" class="category-quick-card text-decoration-none p-3 rounded-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="cat-icon-box bg-dark text-beige border border-secondary border-opacity-50">
+                                    <i class="bi bi-heart-fill fs-5"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white fw-bold mb-0">Romance</h6>
+                                    <small class="text-muted">Historias conmovedoras</small>
+                                </div>
+                            </div>
+                            <span class="btn btn-sm btn-outline-beige rounded-circle"><i class="bi bi-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<div class="album py-5 bg-body-tertiary">
-    <div class="container">
-        {% for genero in generos %}
-        <!-- Título y descripción del género -->
-        <div class="mb-4 {% if not forloop.first %}mt-5{% endif %}">
-            <h2 class="fw-light border-bottom pb-2">{{ genero.nombre }}</h2>
-            <p class="text-body-secondary fs-5">{{ genero.descripcion }}</p>
+<!-- Características del Catálogo -->
+<section class="py-5 bg-dark-custom border-top border-bottom border-secondary-subtle">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <span class="text-gold fw-bold text-uppercase tracking-wider small">Características</span>
+            <h2 class="text-white fw-bold mt-1">¿Qué Encontrarás en Nuestro Catálogo?</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Una plataforma diseñada para explorar, clasificar y consultar películas de diversas épocas y temáticas de forma rápida y sencilla.
+            </p>
         </div>
 
-        <!-- Grid de Cards de Bootstrap -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for pelicula in genero.peliculas|slice:":3" %}
-            <div class="col">
-                <div class="card shadow-sm h-100">
-                    <img src="{% static 'imagenes/'|add:pelicula.imagen %}" class="bd-placeholder-img card-img-top" width="100%" height="225" style="object-fit: cover;" alt="{{ pelicula.nombre }}">
-                    <div class="card-body d-flex flex-column">
-                        <p class="card-text"><strong>{{ pelicula.nombre }}</strong></p>
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 rounded-4 h-100 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-tags-fill text-gold fs-2"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Clasificación por Géneros</h5>
+                    <p class="text-muted small mb-0">Listas divididas en Acción, Ciencia Ficción, Comedia y Romance para una búsqueda eficiente.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 rounded-4 h-100 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-card-list text-green fs-2"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Fichas Informativas</h5>
+                    <p class="text-muted small mb-0">Datos relevantes de cada título incluyendo año de lanzamiento, portada y detalles principales.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 rounded-4 h-100 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-search text-beige fs-2"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Exploración Rápida</h5>
+                    <p class="text-muted small mb-0">Descubre y consulta títulos destacados del catálogo de forma intuitiva.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 rounded-4 h-100 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-list-check text-coffee fs-2"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Menú Desplegable</h5>
+                    <p class="text-muted small mb-0">Acceso directo a cualquier sección del catálogo en cualquier momento desde la barra superior.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN: NOS UBICAMOS ACÁ -->
+<section id="ubicacion" class="py-5 position-relative" style="background-color: #121110;">
+    <div class="container py-4">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="pe-lg-3">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill custom-badge-coffee mb-3">
+                        <i class="bi bi-geo-alt-fill text-gold"></i>
+                        <span class="text-cream fw-bold small">Sede Central</span>
+                    </div>
+                    <h2 class="display-6 fw-bold text-white mb-3">
+                        ¡Nos ubicamos acá! 📍
+                    </h2>
+                    <p class="text-muted fs-5 mb-0">
+                        Nuestras oficinas y centro de administración del catálogo se encuentran ubicados en la zona central para consultas, soporte y gestión del sitio.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mapa Visual -->
+            <div class="col-lg-6">
+                <div class="map-card-wrapper position-relative rounded-4 overflow-hidden shadow-lg">
+                    <!-- Cabecera de la tarjeta del mapa -->
+                    <div class="map-header p-3 border-bottom border-secondary border-opacity-25 d-flex align-items-center justify-content-between" style="background-color: #22201d;">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="status-indicator online"></span>
+                            <span class="text-white fw-semibold small">Ubicación de Oficinas</span>
+                        </div>
+                        <span class="badge custom-badge">Oficina Central</span>
+                    </div>
+
+                    <!-- Visual de Mapa Simulado -->
+                    <div class="map-visual position-relative p-4 d-flex flex-column justify-content-between" style="min-height: 320px;">
+                        <div class="map-grid-overlay"></div>
+                        
+                        <!-- Pin de Ubicación Central -->
+                        <div class="map-pin-box position-absolute top-50 start-50 translate-middle text-center">
+                            <div class="pulse-ring"></div>
+                            <div class="pin-marker text-white shadow-lg">
+                                <i class="bi bi-building fs-4 text-cream"></i>
                             </div>
-                            <small class="text-body-secondary">Año: {{ pelicula.año }}</small>
+                            <div class="pin-tooltip bg-dark text-white px-3 py-1 rounded-pill shadow-sm mt-2 border border-secondary">
+                                <span class="fw-bold small text-gold">★ Sede Central del Catálogo</span>
+                            </div>
+                        </div>
+
+                        <!-- Info en esquina inferior -->
+                        <div class="position-relative z-1 align-self-stretch mt-auto">
+                            <div class="glass-tag p-3 rounded-3 text-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fw-bold text-cream small">Administración y Soporte</div>
+                                        <div class="text-muted" style="font-size: 0.78rem;">Atención de consultas sobre el catálogo de películas</div>
+                                    </div>
+                                    <span class="badge custom-badge">Activo</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {% empty %}
-            <div class="col-12 w-100">
-                <p class="text-muted">No hay películas registradas en este género.</p>
-            </div>
-            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
+</section>
 {% endblock content %}
+
+
+
